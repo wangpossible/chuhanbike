@@ -22,4 +22,9 @@ router.get('/contact', function(req, res) {
   res.render('contact', { title: '联系我们',active:'active' });
 });
 
+router.get('/webchat',function(req,res){
+	var token=req.query.bike;
+	res.end(token);
+});
+
 module.exports = router;
