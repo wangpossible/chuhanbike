@@ -23,8 +23,8 @@ router.get('/contact', function(req, res) {
 });
 
 router.get('/webchat',function(req,res){
-	var token=req.query.bike;
-	res.end('bike');
+	var echostr=req.query.echostr;
+	res.end(echostr);
 });
 
 module.exports = router;
