@@ -1,12 +1,15 @@
 var express = require('express');
 var path = require('path');
+var fs = require('fs');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var markdown = require('markdown-js');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var events = require('./routes/events');
 
 var app = express();
 
@@ -19,10 +22,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//add markdown support
+app.engine('md', function(path, options, fn){  
+  fs.readFile(path, 'utf8', function(err, str){  
+    if (err) return fn(err);  
+    str = markdown.parse(str).toString();  
+    fn(null, str);  
+  });  
+});
 
 //route config
 app.use('/', routes);
 app.use('/users', users);
+app.use('/events', events);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
