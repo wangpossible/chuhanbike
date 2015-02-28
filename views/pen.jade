@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    script(src='javascripts/firebase.js')
+    |     
+    script(src='javascripts/jquery.min.js')
+    | &#x9;
+    script(type='text/javascript', src='http://pv.sohu.com/cityjson')
+  |   
+  body
+    #messagesDiv(style='border: 1px solid;border-color: burlywood;')
+    |     
+    input#messageInput(type='text', placeholder='没事喷两句。。。。', style='height: 50px;width: 85%;margin-top: 10px;')
+    | &#x9;
+    input#sendMessage(type='button', value='走你', style='width: 10%;height: 50px;margin-top: 10px;')
+    |     
+    script.
+      var myDataRef = new Firebase('https://burning-inferno-3477.firebaseio.com/');
+      var ip=returnCitySN.cip;
+      var cname=returnCitySN.cname;
+      $("#sendMessage").click(function(){
+      var text = $('#messageInput').val();
+      myDataRef.push({author: ip, nickname:cname+"的网友",content: text,ctime:new Date()});
+      $('#messageInput').val('');
+      });
+      $('#messageInput').keypress(function (e) {
+      if (e.keyCode == 13) {
+      var text = $('#messageInput').val();
+      myDataRef.push({author: ip, nickname:cname+"的网友",content: text,ctime:new Date()});
+      $('#messageInput').val('');
+      }
+      });
+      myDataRef.on('child_added', function(snapshot) {
+      var message = snapshot.val();
+      displayChatMessage(message.content);
+      });
+      function displayChatMessage(text) {
+      $('<div style="margin-top: 2px" />').text(text).prepend($('<em/>').text("某某某说:    ")).appendTo($('#messagesDiv'));
+      $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };

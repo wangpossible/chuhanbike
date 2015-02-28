@@ -22,6 +22,10 @@ router.get('/contact', function(req, res) {
   res.render('contact', { title: '联系我们',active:'active' });
 });
 
+router.get('/pen', function(req, res) {
+  res.render('pen', { title: '随便喷',active:'active' });
+});
+
 router.get('/webchat',function(req,res){
 	var echostr=req.query.echostr;
 	res.end(echostr);
