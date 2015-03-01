@@ -1,4 +1,4 @@
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
@@ -23,6 +23,10 @@ router.get('/contact', function(req, res) {
 });
 
 router.get('/pen', function(req, res) {
+  res.render('pen', { title: '随便喷',active:'active' });
+});
+
+router.get('/bullshit', function(req, res) {
   res.render('pen', { title: '随便喷',active:'active' });
 });
 
