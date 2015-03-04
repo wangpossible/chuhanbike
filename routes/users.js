@@ -3,7 +3,8 @@ var router = express.Router();
 var mongoose=require('mongoose');
 var hash=require('../pass').hash;
 
-mongoose.connect('mongodb://localhost:/myapp');
+//mongoose.connect('mongodb://localhost:/myapp');
+mongoose.connect('mongodb://wangshoufang:whatfangfang@ds029827.mongolab.com:29827/bike');
 var userSchema=new mongoose.Schema({
 	username:String,
 	password:String,
