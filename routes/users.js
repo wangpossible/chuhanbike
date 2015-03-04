@@ -22,19 +22,11 @@ router.get('/', function(req, res) {
 });
 
 router.get('/signup', function(req, res) {
-	if(req.session.user){
-		res.redirect('/');
-	}else{
-		res.render('signup');
-	}
+	res.render('signup');
 });
 
 router.get('/login', function(req, res) {
-	if(req.session.user){
-		res.redirect('/');
-	}else{
-		res.render('login');
-	}
+	res.render('login');
 });
 
 router.get('/logout', function (req, res) {
@@ -43,20 +35,19 @@ router.get('/logout', function (req, res) {
     });
 });
 
-router.get('/prifile',requiredAuthentication, function (req, res) {
-    res.send('Profile page of '+ req.session.user.username +'<br>'+' click to <a href="/logout">logout</a>');
+router.get('/profile',requiredAuthentication, function (req, res) {
+    res.send('Profile page of '+ req.session.user.username +'<br>'+' click to <a href="/users/logout">logout</a>');
 });
 
-router.post('/sinup',isUserExisted,function (req, res) {
-	console.log(req);
-	var usrname=req.body.username;
+router.post('/signup',isUserExisted,function (req, res) {
+	var name=req.body.username;
 	var password=req.body.password;
 	console.log(req.body.username);
 	console.log(req.body.password);
 	hash(password,function(err,salt,hash){
 		if(err) throw err;
 		var user=new User({
-			username:username,
+			username:name,
 			salt:salt,
 			hash:hash
 		}).save(function(err,newUser){
@@ -65,7 +56,7 @@ router.post('/sinup',isUserExisted,function (req, res) {
 				if(user){
 						req.session.regenerate(function(){
 								req.session.user=user;
-								req.session.success = 'Authenticated as ' + user.username + ' click to <a href="/logout">logout</a>.';
+								req.session.success = 'Authenticated as ' + user.username + ' click to <a href="/users/logout">logout</a>.';
 								res.redirect('/');
 						});
 				}
@@ -81,7 +72,7 @@ router.post('/login',function(req,res){
         if (user) {
             req.session.regenerate(function () {
                 req.session.user = user;
-                req.session.success = 'Authenticated as ' + user.username + ' click to <a href="/logout">logout</a>. ';
+                req.session.success = 'Authenticated as ' + user.username + ' click to <a href="/users/logout">logout</a>. ';
                 res.redirect('/');
             });
         } else {
@@ -118,7 +109,7 @@ function requiredAuthentication(req,res,next){
 		next();
 	}else{
 		req.session.error = 'Access denied!';
-		res.redirect('/login');
+		res.redirect('/users/login');
 	}	
 }
 
@@ -130,11 +121,10 @@ function isUserExisted(req,res,next){
 			if(count==0){
 				next();
 			}else{
-				req.session.error('user exist');
-				res.redirect('/sinup');
+				req.session.error='user exist';
+				res.redirect('/users/signup');
 			}	
 		});
-	
 }
 
 module.exports = router;

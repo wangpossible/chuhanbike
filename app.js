@@ -1,4 +1,27 @@
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//
+//         .............................................
+//                  佛祖保佑             永无BUG
+
 var express = require('express');
+var http=require('http');
 var path = require('path');
 var fs = require('fs');
 var favicon = require('serve-favicon');
@@ -6,20 +29,27 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var markdown = require('markdown-js');
-
+var session = require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/events');
 
-var app = express();
+var setting = {cookieSecret:"TYUIOHNJF",db:"users"}; 
 
+var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ 
+    secret:setting.cookieSecret, 
+    key:setting.db, 
+    cookie:{maxAge:1000*60*60*24*30}
+    //store:new MongoStore({db:setting.db}) 
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 //add markdown support

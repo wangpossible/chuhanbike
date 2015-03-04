@@ -73,15 +73,15 @@ html(lang='zh-cn', xmlns:wb='http://open.weibo.com/wb')
               a(href='/contact')
                 | &#x8054;&#x7CFB;&#x6211;&#x4EEC;
     | &#x9;&#x9;
-    form(method='post', action='/users/sinup')
+    form(method='post', action='/users/signup')
       .form-group
         label(for='exampleInputEmail1') Email address
         | &#x9;&#x9;&#x9;
-        input#exampleInputEmail1.form-control(type='email', placeholder='Enter email')
+        input#exampleInputEmail1.form-control(type='email', placeholder='Enter email',name="username")
       | &#x9;&#x9;  
       .form-group
         label(for='exampleInputPassword1') Password
         | &#x9;&#x9;&#x9;
-        input#exampleInputPassword1.form-control(type='password', placeholder='Password')
+        input#exampleInputPassword1.form-control(type='password', placeholder='Password',name="password")
       | &#x9;&#x9;  
       button.btn.btn-default(type='submit') Submit
