@@ -22,6 +22,7 @@ router.get('/', function(req, res) {
   }
 });
 
+//errMsg:错误信息
 router.get('/signup', function(req, res) {
 	res.render('signup');
 });
@@ -41,8 +42,13 @@ router.get('/profile',requiredAuthentication, function (req, res) {
 });
 
 router.post('/signup',isUserExisted,function (req, res) {
-	var name=req.body.username;
-	var password=req.body.password;
+	var name=req.body.username.replace(/\s+/g,"");
+	var password=req.body.password.replace(/\s+/g,"");
+	if(name==="" || password === ""){
+            req.session.error = '邮箱和密码都不能为空!';
+            //res.redirect('/users/signup');
+			res.render('signup',{errMsg:'邮箱和密码都不能为空!'});
+	}
 	hash(password,function(err,salt,hash){
 		if(err) throw err;
 		var user=new User({
@@ -74,7 +80,8 @@ router.post('/login',function(req,res){
             });
         } else {
             req.session.error = 'Authentication failed, please check your ' + ' username and password.';
-            res.redirect('/users/login');
+            //res.redirect('/users/login');
+			res.render('login',{errMsg:'登录失败,邮箱或者密码错误!'});
         }
     });
 	
@@ -118,7 +125,8 @@ function isUserExisted(req,res,next){
 				next();
 			}else{
 				req.session.error='user exist';
-				res.redirect('/users/signup');
+				//res.redirect('/users/signup');
+				res.render('signup',{errMsg:'当前用户已经存在!'});
 			}	
 		});
 }

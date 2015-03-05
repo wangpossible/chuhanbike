@@ -101,16 +101,18 @@ html(lang='zh-cn', xmlns:wb='http://open.weibo.com/wb')
               label(for='exampleInputEmail1') &#x90AE;&#x7BB1;
               |  
               |             
-              input#exampleInputEmail1.form-control(type='email', placeholder='Enter email', name='username', style='width:100%;')
+              input#exampleInputEmail1.form-control(type='email', placeholder='Enter email', name='username', style='width:100%;',required)
             |  
             |            
             .form-group
               label(for='exampleInputPassword1') &#x5BC6;&#x7801;
               |  
               |             
-              input#exampleInputPassword1.form-control(type='password', placeholder='Password', name='password', style='width:100%;')
+              input#exampleInputPassword1.form-control(type='password', placeholder='Password', name='password', style='width:100%;',required)
             |  
             | &#x9;&#x9;&#x9;
+            if errMsg
+              h3.bg-danger= errMsg			
             button.btn.btn-primary.btn-lg.btn-block(type='submit') &#x6CE8;&nbsp;&nbsp;&#x518C;
       |     
       .row(style='background-color:rgba(0,0,0,0.65);margin-top: 30px;')
