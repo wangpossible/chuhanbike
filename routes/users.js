@@ -43,8 +43,6 @@ router.get('/profile',requiredAuthentication, function (req, res) {
 router.post('/signup',isUserExisted,function (req, res) {
 	var name=req.body.username;
 	var password=req.body.password;
-	console.log(req.body.username);
-	console.log(req.body.password);
 	hash(password,function(err,salt,hash){
 		if(err) throw err;
 		var user=new User({
@@ -67,8 +65,6 @@ router.post('/signup',isUserExisted,function (req, res) {
 });
 
 router.post('/login',function(req,res){
-	console.log(req.body.username);
-	console.log(req.body.password);
 	authenticate(req.body.username, req.body.password, function (err, user) {
         if (user) {
             req.session.regenerate(function () {
@@ -87,7 +83,6 @@ router.post('/login',function(req,res){
 
 /* authenticate current user*/
 function authenticate(username,password,fn){
-	console.log('authenticating %s:%s',username,password);
 	User.findOne({
 		username:username
 	},function(err,user){
