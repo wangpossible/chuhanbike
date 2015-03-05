@@ -71,6 +71,13 @@ router.post('/signup',isUserExisted,function (req, res) {
 });
 
 router.post('/login',function(req,res){
+	var name=req.body.username.replace(/\s+/g,"");
+	var password=req.body.password.replace(/\s+/g,"");
+	if(name==="" || password === ""){
+            req.session.error = '邮箱和密码都不能为空!';
+            //res.redirect('/users/signup');
+			res.render('login',{errMsg:'邮箱和密码都不能为空!'});
+	}
 	authenticate(req.body.username, req.body.password, function (err, user) {
         if (user) {
             req.session.regenerate(function () {
