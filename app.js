@@ -33,6 +33,7 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/events');
+var wedding = require('./routes/wedding');
 
 var setting = {cookieSecret:"TYUIOHNJF",db:"users"}; 
 
@@ -65,6 +66,8 @@ app.engine('md', function(path, options, fn){
 app.use('/', routes);
 app.use('/users', users);
 app.use('/events', events);
+app.use('/wedding', wedding);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
