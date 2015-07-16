@@ -6,11 +6,6 @@ router.get('/', function(req, res) {
   res.render('index', { title: '楚汉单车俱乐部',active:'active' });
 });
 
-/* GET home page. */
-router.get('/googlec2593dadb6786fe1.html', function(req, res) {
-  res.render('google', { title: '楚汉单车俱乐部',active:'active' });
-});
-
 router.get('/product', function(req, res) {
   res.render('product', { title: '装备库',active:'active' });
 });
