@@ -1,17 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var mongoose=require('mongoose');
+var mongoose = require('./mongo.js');
 var hash=require('../pass').hash;
-
-//mongoose.connect('mongodb://localhost:/myapp');
-mongoose.connect('mongodb://wangshoufang:whatfangfang@ds029827.mongolab.com:29827/bike');
 var userSchema=new mongoose.Schema({
 	username:String,
 	password:String,
 	salt:String,
 	hash:String
 });
-var User=mongoose.model('users',userSchema);
+var User=mongoose.model('user',userSchema);
 
 /* GET users listing. */
 router.get('/', function(req, res) {
