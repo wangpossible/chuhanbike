@@ -1,0 +1,72 @@
+extends layout
+
+block content
+    nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#title')
+            span.sr-only Toggle navigation
+            |  
+            span.icon-bar
+            |  
+            span.icon-bar
+            |  
+            span.icon-bar
+          |  
+          |      
+          a.navbar-brand(href='/') &#x695A;&#x6C49;&#x5355;&#x8F66;&#x4FF1;&#x4E50;&#x90E8;
+        |     
+        #title.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/') &#x9996;&#x9875;
+            |  
+            |       
+            li
+              a(href='/product') &#x88C5;&#x5907;&#x5E93;
+            |  
+            |       
+            li
+              a(href='/show') &#x6211;&#x578B;&#x6211;&#x79C0;
+            |  
+            |       
+            li.active
+              a(href='/events') &#x62C9;&#x5E2E;&#x7ED3;&#x6D3E;
+            |  
+            |       
+            li
+              a(href='/contact') &#x8054;&#x7CFB;&#x6211;&#x4EEC;
+    |  
+    .container-fluid
+      .row
+        .col-md-12.text-center
+          h1
+            strong &#21457;&#24067;&#39569;&#34892;&#20196;,&#21484;&#38598;&#23567;&#20249;&#20276;
+      .row
+        .col-md-2
+        .col-md-8
+          form.form-horizontal(action="/createActivity", method="POST")
+            .form-group
+              label.control-label(for="activityTitle") &#26631;&#39064;
+              input#activityTitle.form-control(type="text", name="activityTitle", placeholder="活动标题", required="")
+            .form-group
+              label(for="activityStart") &#36215;&#28857;
+              input#activityStart.form-control(type="text", name="activityStart", placeholder="集合起点", required="")
+            .form-group
+              label(for="activityEnd") &#32456;&#28857;
+              input#activityEnd.form-control(type="text", name="activityEnd", placeholder="集合终点", required="")
+            .form-group
+              label(for="activityDistance") &#36317;&#31163;
+              input#activityDistance.form-control(type="text", name="activityDistance", placeholder="准备耍多少公里", required="")
+            .form-group
+              label(for="activityTime") &#26085;&#26399;
+              input#activityTime.form-control(type="text", name="activityTime", placeholder="集合日期", readonly="", required="")
+            .form-group
+              label(for="activityPublisherTel") &#21457;&#24067;&#32773;&#25163;&#26426;&#21495;
+              input#activityPublisherTel.form-control(type="text", name="activityPublisherTel", placeholder="方便大家联系,请提供下手机号", required="")
+            .form-group
+              label(for="activityKindlyReminder") &#28201;&#39336;&#25552;&#31034;
+              textarea#activityKindlyReminder.form-control(rows="3", name="activityKindlyReminder", placeholder="温馨提示，提示下注意事项", required="")
+            button.btn.btn-primary.btn-lg.btn-block(type="submit") Submit
+        .col-md-2
+    // footer

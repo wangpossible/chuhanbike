@@ -21,8 +21,13 @@ var Activitys=mongoose.model('activity',activitySchema);
 router.get('/', function(req, res) {
   Activitys.find({},function(error,activitys){
     console.log(activitys);
-	res.render('event',{layout:false,title:'活动集锦',results:activitys});
+	res.render('event',{title:'活动集锦',results:activitys});
   });  
+});
+
+
+router.get('/createActivity',function(req,res,next){
+		res.render('createActivity',{title:'创建活动'});
 });
 
 router.post('/createActivity',function(req,res,next){

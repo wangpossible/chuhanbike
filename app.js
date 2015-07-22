@@ -30,6 +30,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var markdown = require('markdown-js');
 var session = require('express-session');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/events');
@@ -65,7 +66,7 @@ app.engine('md', function(path, options, fn){
 //route config
 app.use('/', routes);
 app.use('/users', users);
-app.use('/event', events);
+app.use('/events', events);
 app.use('/wedding', wedding);
 
 
