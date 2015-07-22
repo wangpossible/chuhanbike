@@ -65,7 +65,7 @@ app.engine('md', function(path, options, fn){
 //route config
 app.use('/', routes);
 app.use('/users', users);
-app.use('/events', events);
+app.use('/event', events);
 app.use('/wedding', wedding);
 
 
