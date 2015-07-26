@@ -15,22 +15,34 @@ var activitySchema=new mongoose.Schema({
 	ctime:String,
 	mtime:String
 });
+
+var activityApplySchema=new mongoose.Schema({
+	activity_id:String,
+	user_id:String,
+	activity_apply_name:String,
+	activity_apply_tel:String,
+	ctime:String,
+	mtime:String
+});
+
+
 var Activitys=mongoose.model('activity',activitySchema);
+var ActivityApplys=mongoose.model('activity_apply',activityApplySchema);
 
 /* GET events listing. */
 router.get('/', function(req, res) {
   Activitys.find({},function(error,activitys){
     console.log(activitys);
-	res.render('event',{title:'活动集锦',results:activitys});
+	res.render('activities',{title:'活动集锦',results:activitys});
   });  
 });
 
 
-router.get('/createActivity',function(req,res,next){
+router.get('/create',function(req,res,next){
 		res.render('createActivity',{title:'创建活动'});
 });
 
-router.post('/createActivity',function(req,res,next){
+router.post('/create',function(req,res,next){
   var userId="10001";
   var activityTitle=req.body.activityTitle;
   var activityStart=req.body.activityStart;
@@ -50,7 +62,35 @@ router.post('/createActivity',function(req,res,next){
 		activity_tips:activityKindlyReminder
 	}).save(function(err,newActivity){
 		if(err) throw err;
-		console.log("创建活动成功:" + newActivity.activity_title);		
+		console.log("创建活动成功:" + newActivity.activity_title);	
+		res.redirect('/activities');
+	});
+});
+
+router.get('/apply/:id',function(req,res,next){
+  var activityId=req.params.id;
+  console.log(activityId);
+  Activitys.findById(activityId,function(error,activity){
+	    console.log(activity);
+		res.render('activitieApply',{title:'活动报名',result:activity});
+	  });
+});
+
+//报名活动
+router.post('/apply',function(req,res,next){
+  var userId="10001";
+  var activityId=req.body.activityId;
+  var activityApplyName=req.body.activityApplyName;
+  var activityApplyTel=req.body.activityApplyTel;
+  var activityApply=new ActivityApplys({
+		activity_id:activityId,
+		user_id:userId,
+		activity_apply_name:activityApplyName,
+		activity_apply_tel:activityApplyTel
+	}).save(function(err,newActivityApply){
+		if(err) throw err;
+		console.log("报名活动成功:" + newActivityApply.activity_id);	
+		res.redirect('/activities');
 	});
 });
 

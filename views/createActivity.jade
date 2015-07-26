@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top(role='navigation')
+    nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
       .container-fluid
         .navbar-header
           button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#title')
@@ -31,7 +31,7 @@ block content
             |  
             |       
             li.active
-              a(href='/events') &#x62C9;&#x5E2E;&#x7ED3;&#x6D3E;
+              a(href='/activities') 骑行令
             |  
             |       
             li
@@ -45,7 +45,7 @@ block content
       .row
         .col-md-2
         .col-md-8
-          form.form-horizontal(action="/createActivity", method="POST")
+          form.form-horizontal(action="/activities/create", method="POST")
             .form-group
               label.control-label(for="activityTitle") &#26631;&#39064;
               input#activityTitle.form-control(type="text", name="activityTitle", placeholder="活动标题", required="")
@@ -69,4 +69,7 @@ block content
               textarea#activityKindlyReminder.form-control(rows="3", name="activityKindlyReminder", placeholder="温馨提示，提示下注意事项", required="")
             button.btn.btn-primary.btn-lg.btn-block(type="submit") Submit
         .col-md-2
-    // footer
+    | 
+    footer#footer
+      .copy-footer
+        p &copy;楚汉单车俱乐部 Powered by Wang Shoufang     

@@ -1,7 +1,7 @@
-extends layout
+﻿extends layout
 
 block content
-    nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top(role='navigation')
+    nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
       .container-fluid
         .navbar-header
           button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#title')
@@ -31,18 +31,18 @@ block content
             |  
             |       
             li.active
-              a(href='/events') &#x62C9;&#x5E2E;&#x7ED3;&#x6D3E;
+              a(href='/activities') 骑行令
             |  
             |       
             li
               a(href='/contact') &#x8054;&#x7CFB;&#x6211;&#x4EEC;
     |   
-    .container-fluid(style='background: #f9f9f9;')
+    .container-fluid(style='background: #f9f9f9;margin-top: 20px;')
       each result in results
         .row
           .col-md-2
             a.thumbnail(href='#')
-              img(src='../images/bg4.jpg', alt='xiangshan')
+              img(src='../images/bg6.jpg', alt='xiangshan')
           | &#x9;&#x9;
           .col-md-9
             div #{result.activity_start}~#{result.activity_end}
@@ -59,8 +59,7 @@ block content
             button.btn.btn-primary(type='button') &#x6211;&#x8981;&#x62A5;&#x540D;
         | &#x9;  
         |    
-      .row(style='background-color:rgba(0,0,0,0.65);margin-top: 5px;')
-        .container(style='height:50px;margin-top:38px;')
-          .col-md-12
-            center
-              a(href='http://wangshoufang.com', style='color: #fff;') @&#x695A;&#x6C49;&#x5355;&#x8F66;&#x4FF1;&#x4E50;&#x90E8; &nbsp;&nbsp;Powered by Wang Shoufang 
+    |	
+    footer#footer
+      .copy-footer
+        p &copy;楚汉单车俱乐部 Powered by Wang Shoufang 

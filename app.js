@@ -33,7 +33,7 @@ var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var events = require('./routes/events');
+var activities = require('./routes/activities');
 var wedding = require('./routes/wedding');
 
 var setting = {cookieSecret:"TYUIOHNJF",db:"users"}; 
@@ -66,7 +66,7 @@ app.engine('md', function(path, options, fn){
 //route config
 app.use('/', routes);
 app.use('/users', users);
-app.use('/events', events);
+app.use('/activities', activities);
 app.use('/wedding', wedding);
 
 

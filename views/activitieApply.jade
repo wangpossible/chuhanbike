@@ -1,0 +1,73 @@
+extends layout
+
+block content
+    nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#title')
+            span.sr-only Toggle navigation
+            |  
+            span.icon-bar
+            |  
+            span.icon-bar
+            |  
+            span.icon-bar
+          |  
+          |      
+          a.navbar-brand(href='/') &#x695A;&#x6C49;&#x5355;&#x8F66;&#x4FF1;&#x4E50;&#x90E8;
+        |     
+        #title.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/') &#x9996;&#x9875;
+            |  
+            |       
+            li
+              a(href='/product') &#x88C5;&#x5907;&#x5E93;
+            |  
+            |       
+            li
+              a(href='/show') &#x6211;&#x578B;&#x6211;&#x79C0;
+            |  
+            |       
+            li.active
+              a(href='/activities') 骑行令
+            |  
+            |       
+            li
+              a(href='/contact') &#x8054;&#x7CFB;&#x6211;&#x4EEC;
+    |  
+    .container-fluid
+      .row
+        .col-md-12.text-center
+          h1
+            strong 我要报名
+      .row
+        .col-md-2
+        .col-md-2
+          a.thumbnail(href='#')
+            img(src='../../images/bg6.jpg', alt='xiangshan')
+        .col-md-6
+          div #{result.activity_start}~#{result.activity_end}
+          div &#x5F80;&#x8FD4; #{result.activity_distance} KM
+          div &#x96C6;&#x5408;&#x65F6;&#x95F4;: #{result.activity_time}
+          div &#x53D1;&#x5E03;&#x8005;:&#x9;&#x8001;&#x8D75;
+          div &#x5F53;&#x524D;&#x62A5;&#x540D;&#x6570;:&#x9;20
+        .col-md-2
+      .row
+        .col-md-2
+        .col-md-8
+          form.form-horizontal(action="/activities/apply", method="POST")
+            input(type='hidden', name='activityId', value='#{result._id}')
+            .form-group
+              label(for='applicantUserName') 我的名字
+              input#applicantUserName.form-control(type='text', name='activityApplyName', placeholder='我的名字')
+            .form-group
+              label(for='applicantTel') 我的手机号
+              input#applicantTel.form-control(type='text', name='activityApplyTel', placeholder='方便联系大家,请提供下手机号')
+            button.btn.btn-primary.btn-lg.btn-block(type='submit') Submit
+        .col-md-2
+    |   
+    footer#footer
+      .copy-footer
+        p &copy;楚汉单车俱乐部 Powered by Wang Shoufang 
