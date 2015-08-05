@@ -1,13 +1,10 @@
 doctype html
-html(lang='zh-cn', xmlns:wb='http://open.weibo.com/wb')
+html(lang='zh-cn')
   head
     title &#x695A;&#x6C49;&#x5355;&#x8F66;&#x4FF1;&#x4E50;&#x90E8;
     |  
     |   
     meta(charset='UTF-8')
-    |  
-    |   
-    meta(property='wb:webmaster', content='7e48a2ba8fb09989')
     |  
     |   
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -38,17 +35,6 @@ html(lang='zh-cn', xmlns:wb='http://open.weibo.com/wb')
     |  
     |   
     script(type='text/javascript', src='http://pv.sohu.com/cityjson')
-    |  
-    |   
-    script(type='text/javascript', src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=97706022')
-    |   
-    script(type='text/javascript').
-      function login(o) {
-      alert(o.screen_name)
-      }
-      function logout() {
-      alert('logout');
-      }
     //if lt IE 9
       script(type='text/javascript', src='http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js')
       |             
@@ -124,12 +110,6 @@ html(lang='zh-cn', xmlns:wb='http://open.weibo.com/wb')
               h3.bg-danger= errMsg
             button.btn.btn-primary.btn-lg.btn-block(type='submit') &#x767B;&nbsp;&nbsp;&#x5F55;
           | &#x9;&#x9;  
-          .row
-            blockquote
-              p &#x4F7F;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x8D26;&#x53F7;&#x767B;&#x5F55;
-            | &#x9;&#x9;&#x9;&#x9;
-            p
-              wb:login-button(type='3,2', onlogin='login', onlogout='logout') &#x767B;&#x5F55;&#x6309;&#x94AE;
       |     
     | 
     footer#footer
