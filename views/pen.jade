@@ -38,10 +38,11 @@ block content
       .row
         table#messagesDiv.table.table-hover
       .row
-        .col-md-9
+        .col-md-12
           input#messageInput.form-control(type='text', placeholder='没事喷两句。。。。')
-        .col-md-3
-          input#sendMessage.btn.btn-success(type='button', value='喷')
+      .row
+        .col-md-12
+          input#sendMessage.btn.btn-primary.btn-block(type='button', value='喷')          
     script.
       var myDataRef = new Firebase('https://burning-inferno-3477.firebaseio.com/pen');
       var ip=returnCitySN.cip;
