@@ -69,8 +69,6 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/activities', activities);
 app.use('/wedding', wedding);
-app.use('/spider', spider);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
