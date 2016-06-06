@@ -35,7 +35,6 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var activities = require('./routes/activities');
 var wedding = require('./routes/wedding');
-var spider = require('./routes/spider');
 var monitor = require('./routes/monitor');
 
 var setting = {cookieSecret:"TYUIOHNJF",db:"users"}; 
