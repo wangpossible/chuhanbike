@@ -31,8 +31,8 @@ function requestTuan(){
 	superagent.get(url).end(function(err,res){
 		if (err) {
 			mailOptions.subject="首页访问异常";
-			mailOptions.text="首页访问异常test";
-			mailOptions.html="首页访问异常test";
+			mailOptions.text="首页访问异常";
+			mailOptions.html="首页访问异常";
   			sendMail(mailOptions);
 		}else{
 			var status =res.status;
